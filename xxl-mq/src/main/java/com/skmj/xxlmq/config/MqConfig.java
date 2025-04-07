@@ -13,11 +13,14 @@ import org.noear.solon.annotation.Inject;
 public class MqConfig {
     @Inject("${xxl-mq.address}")
     private String address;
+    @Inject("${xxl-mq.token}")
+    private String token;
 
     @Bean
     public XxlMqSpringClientFactory getXxlMqConsumer(){
         XxlMqSpringClientFactory xxlMqSpringClientFactory = new XxlMqSpringClientFactory();
         xxlMqSpringClientFactory.setAdminAddress(address);
+        xxlMqSpringClientFactory.setAccessToken(token);
         return xxlMqSpringClientFactory;
     }
 }
