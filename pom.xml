@@ -8,7 +8,7 @@
     <artifactId>skmj-server</artifactId>
     <version>1.0</version>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.noear</groupId>
@@ -30,91 +30,115 @@
             <artifactId>solon-test</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <!-- 管理 子模块 的版本 -->
-       
-            <!--数据库连接池-->
-            <dependency>
-                <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP</artifactId>
-                <version>6.2.1</version>
-            </dependency>
-            <!-- mybatis-plus-->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-solon-plugin</artifactId>
-                <version>3.5.10.1</version>
-            </dependency>
-            <!-- mybatis-plus分页-->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-jsqlparser</artifactId>
-                <version>3.5.10.1</version>
-            </dependency>
-            <!--数据库-->
-            <dependency>
-                <groupId>com.mysql</groupId>
-                <artifactId>mysql-connector-j</artifactId>
-                <version>9.2.0</version>
-            </dependency>
-            <!--mqtt服务-->
-            <dependency>
-                <groupId>org.dromara.mica-mqtt</groupId>
-                <artifactId>mica-mqtt-server-solon-plugin</artifactId>
-                <version>2.4.2</version>
-            </dependency>
-            <!--hutool-->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>5.8.36</version>
-            </dependency>
-            <!--图片验证码-->
-            <dependency>
-                <groupId>com.github.whvcse</groupId>
-                <artifactId>easy-captcha</artifactId>
-                <version>1.6.2</version>
-            </dependency>
-            <!--IP地址解析-->
-            <dependency>
-                <groupId>net.dreamlu</groupId>
-                <artifactId>mica-ip2region</artifactId>
-                <version>3.4.3</version>
-            </dependency>
-            <!--加解密-->
-            <dependency>
-                <groupId>org.mindrot</groupId>
-                <artifactId>jbcrypt</artifactId>
-                <version>0.4</version>
-            </dependency>
-            <!--excel-->
-            <dependency>
-                <groupId>cn.idev.excel</groupId>
-                <artifactId>fastexcel</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <!-- Sa-Token 整合 jwt -->
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-jwt</artifactId>
-                <version>1.40.0</version>
-            </dependency>
-            <!-- crane4j 依赖 关联字段填充框架-->
-            <dependency>
-                <groupId>cn.crane4j</groupId>
-                <artifactId>crane4j-core</artifactId>
-                <version>2.9.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xuxueli</groupId>
-                <artifactId>xxl-mq-client</artifactId>
-                <version>1.3.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
+        <!-- Word模板引擎 -->
+        <dependency>
+            <groupId>com.deepoove</groupId>
+            <artifactId>poi-tl</artifactId>
+            <version>1.12.2</version>
+        </dependency>
+        <!--数据库连接池-->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>6.2.1</version>
+        </dependency>
+        <!-- mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-solon-plugin</artifactId>
+            <version>3.5.10.1</version>
+        </dependency>
+        <!-- mybatis-plus分页-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>3.5.10.1</version>
+        </dependency>
+        <!--数据库-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.2.0</version>
+        </dependency>
+        <!--mqtt服务-->
+        <dependency>
+            <groupId>org.dromara.mica-mqtt</groupId>
+            <artifactId>mica-mqtt-server-solon-plugin</artifactId>
+            <version>2.4.2</version>
+        </dependency>
+        <!--hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.36</version>
+        </dependency>
+        <!--图片验证码-->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <!--IP地址解析-->
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-ip2region</artifactId>
+            <version>3.4.3</version>
+        </dependency>
+        <!--加解密-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <!--excel-->
+        <dependency>
+            <groupId>cn.idev.excel</groupId>
+            <artifactId>fastexcel</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- Sa-Token 整合 jwt -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
+            <version>1.40.0</version>
+        </dependency>
+        <!-- crane4j 依赖 关联字段填充框架-->
+        <dependency>
+            <groupId>cn.crane4j</groupId>
+            <artifactId>crane4j-core</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-mq-client</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.noear</groupId>
+                <artifactId>solon-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定启动主类 -->
+                    <mainClass>com.skmj.server.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
     <repositories>
         <repository>
             <id>tencent</id>
