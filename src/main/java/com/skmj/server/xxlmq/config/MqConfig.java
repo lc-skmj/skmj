@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * mq配置
+ *
  * @author lc
  */
 @Component
@@ -15,12 +16,17 @@ public class MqConfig {
     private String address;
     @Value("${xxl-mq.token}")
     private String token;
+    @Value("${xxl-mq.enable}")
+    private Boolean enable;
 
     @Bean
-    public XxlMqSpringClientFactory getXxlMqConsumer(){
-        XxlMqSpringClientFactory xxlMqSpringClientFactory = new XxlMqSpringClientFactory();
-        xxlMqSpringClientFactory.setAdminAddress(address);
-        xxlMqSpringClientFactory.setAccessToken(token);
-        return xxlMqSpringClientFactory;
+    public XxlMqSpringClientFactory getXxlMqConsumer() {
+        if (enable) {
+            XxlMqSpringClientFactory xxlMqSpringClientFactory = new XxlMqSpringClientFactory();
+            xxlMqSpringClientFactory.setAdminAddress(address);
+            xxlMqSpringClientFactory.setAccessToken(token);
+            return xxlMqSpringClientFactory;
+        }
+        return null;
     }
 }

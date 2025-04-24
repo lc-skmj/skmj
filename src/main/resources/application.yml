@@ -1,2 +1,42 @@
 server:
   port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://127.0.0.1:3306/boot?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+#mybatis-plus配置
+mybatis-plus:
+  type-aliases-package: com.jingnuo.transcoding.entity
+  global-config:
+    banner: false
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# xxl-mq配置
+xxl-mq:
+  enable: false
+  token:
+  address: http://127.0.0.1:8080/xxl-mq-admin
+
+#转码配置
+ffmpeg:
+  path: D:\\tools\\ffmpeg\\bin\\ffmpeg.exe
+  outputDir: D:\\finish\\output
+  tmpDir: D:\\tmp
+
+#minio配置
+minio:
+  minio_url: http://127.0.0.1:9000
+  minio_name: admin
+  minio_pass: 1wax@QSZ
+  bucketName: file
+
+#OpenOffice 安装目录
+officeUrl: D:\\tools\\OpenOffice
