@@ -16,7 +16,7 @@ public class MqProducer {
      * @param topic topic
      * @param msg 消息
      */
-    public void send(String topic, String msg) {
+    public static void send(String topic, String msg) {
         XxlMqMessage mqMessage = new XxlMqMessage();
         mqMessage.setTopic(topic);
         mqMessage.setData(msg);
@@ -30,7 +30,7 @@ public class MqProducer {
      * @param msg 消息
      * @param date 生效时间
      */
-    public void send(String topic, String msg, Date date) {
+    public static void send(String topic, String msg, Date date) {
         XxlMqMessage mqMessage = new XxlMqMessage();
         mqMessage.setTopic(topic);
         mqMessage.setData(msg);
