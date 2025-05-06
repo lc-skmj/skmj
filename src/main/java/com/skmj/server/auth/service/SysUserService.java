@@ -12,5 +12,5 @@ public interface SysUserService extends IService<SysUser> {
      * 登录
      * @param loginReq
      */
-    void login(LoginReq loginReq);
+    String login(LoginReq loginReq);
 }

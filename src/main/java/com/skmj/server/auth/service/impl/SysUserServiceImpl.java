@@ -15,8 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
     @Override
-    public void login(LoginReq loginReq) {
+    public String login(LoginReq loginReq) {
         SysUser one = getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, loginReq.getUsername()));
         StpUtil.login(one.getId());
+        return StpUtil.getTokenValue();
     }
 }
