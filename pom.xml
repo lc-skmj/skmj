@@ -128,7 +128,11 @@
             <artifactId>sa-token-jwt</artifactId>
             <version>1.42.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl-springboot-starter-jdk17</artifactId>
+            <version>3.16.2.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

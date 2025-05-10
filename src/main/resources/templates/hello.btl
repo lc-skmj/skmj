@@ -1,0 +1,5 @@
+Hello, ${name}!
+<br>
+Uppercase: ${upper(name)}
+<br>
+Site Name: ${siteName}
