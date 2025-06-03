@@ -1,6 +1,8 @@
 package com.skmj.server.poitl;
 
 import com.deepoove.poi.XWPFTemplate;
+import com.deepoove.poi.data.PictureRenderData;
+import com.deepoove.poi.data.Pictures;
 import com.deepoove.poi.util.PoitlIOUtils;
 
 import java.io.FileOutputStream;
@@ -15,7 +17,7 @@ public class Demo {
 
     public static void main(String[] args) throws IOException {
         try {
-            XWPFTemplate template = XWPFTemplate.compile("D:\\myfile\\github-project\\skmj\\poi-tl\\src\\main\\resources\\doc\\demo.docx").render(
+            XWPFTemplate template = XWPFTemplate.compile("demo.docx").render(
                     new HashMap<String, Object>(1){{
                         put("title", "Hi, poi-tl Word模板引擎");
                     }});
@@ -29,6 +31,10 @@ public class Demo {
             map.put("email", "12345678901@163.com");
             map.put("date", "2020-01-01");
             map.put("remark", "备注");
+            //头像
+            PictureRenderData pictureRenderData = Pictures.ofUrl("a/png")
+                    .size(50, 50).create();
+            map.put("avatar", pictureRenderData);
             //部门信息
             map.put("department", "技术部");
             map.put("position", "Java开发");
