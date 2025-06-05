@@ -18,12 +18,27 @@ public class AuthController {
     /**
      * 登录
      *
-     * @return
+     * @return 登录成功返回 Token，失败返回错误信息
      */
     @RequestMapping("login")
     public SaResult login(@RequestBody LoginReq loginReq) {
-        sysUserService.login(loginReq);
-        return SaResult.ok("登录成功");
+        // 校验验证码
+        if (!validateCaptcha(loginReq.getCaptcha())) {
+            return SaResult.error("验证码错误");
+        }
+
+        try {
+            String token = sysUserService.login(loginReq);
+            return SaResult.ok("登录成功").setData(token);
+        } catch (RuntimeException e) {
+            return SaResult.error(e.getMessage());
+        }
+    }
+
+    // 验证码校验方法
+    private boolean validateCaptcha(String captcha) {
+        // 实现验证码校验逻辑，例如从缓存中获取验证码并与用户输入进行比对
+        return true; // 示例返回值
     }
 
     /**

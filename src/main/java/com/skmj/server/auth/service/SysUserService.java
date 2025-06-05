@@ -11,6 +11,7 @@ public interface SysUserService extends IService<SysUser> {
     /**
      * 登录
      * @param loginReq
+     * @return 登录成功返回 Token，失败抛出异常
      */
     String login(LoginReq loginReq);
 }

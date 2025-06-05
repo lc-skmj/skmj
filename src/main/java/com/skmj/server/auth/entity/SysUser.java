@@ -24,5 +24,7 @@ public class SysUser {
     private String createBy;
     private String updateBy;
     private LocalDateTime lastLoginTime;
+    private Integer loginFailCount; // 登录失败次数
+    private LocalDateTime lockTime; // 账户锁定时间
 
 }
