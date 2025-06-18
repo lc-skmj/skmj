@@ -60,3 +60,12 @@ sa-token:
   is-log: true
   # jwt秘钥
   jwt-secret-key: asdasdasifhueuiwyurfewbfjsdafjk
+
+#AI配置
+ai:
+  model:
+    modelName: "default-large-model"
+    defaultMaxTokens: 200
+    temperature: 0.7
+    maxRetries: 3
+    timeoutMillis: 30000
