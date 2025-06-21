@@ -1,12 +1,9 @@
 package com.skmj.server.util;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.jeecg.common.constant.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * IP地址
  * 
@@ -24,13 +21,13 @@ public class IpUtils {
 	 * 如果使用了多级反向代理的话，X-Forwarded-For的值并不止一个，而是一串IP地址，X-Forwarded-For中第一个非unknown的有效IP字符串，则为真实IP地址
 	 */
 	public static String getIpAddr(HttpServletRequest request) {
-    	String ip = null;
+        String ip = null;
         try {
             ip = request.getHeader("x-forwarded-for");
             if (StringUtils.isEmpty(ip) || CommonConstant.UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("Proxy-Client-IP");
             }
-            if (StringUtils.isEmpty(ip) || ip.length() == 0 ||CommonConstant.UNKNOWN.equalsIgnoreCase(ip)) {
+            if (StringUtils.isEmpty(ip) || CommonConstant.UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("WL-Proxy-Client-IP");
             }
             if (StringUtils.isEmpty(ip) || CommonConstant.UNKNOWN.equalsIgnoreCase(ip)) {
@@ -42,17 +39,13 @@ public class IpUtils {
             if (StringUtils.isEmpty(ip) || CommonConstant.UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getRemoteAddr();
             }
+            // 使用代理，则获取第一个IP地址
+            if (!StringUtils.isEmpty(ip) && ip.length() > 15 && ip.contains(",")) {
+                ip = ip.substring(0, ip.indexOf(",")).trim();
+            }
         } catch (Exception e) {
-        	logger.error("IPUtils ERROR ", e);
+            logger.error("IPUtils ERROR ", e);
         }
-        
-//        //使用代理，则获取第一个IP地址
-//        if(StringUtils.isEmpty(ip) && ip.length() > 15) {
-//			if(ip.indexOf(",") > 0) {
-//				ip = ip.substring(0, ip.indexOf(","));
-//			}
-//		}
-        
         return ip;
     }
 	
