@@ -1,5 +1,6 @@
 package com.skmj.server.area;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +60,41 @@ public class AreaServiceImpl extends ServiceImpl<AreaMapper, Area> implements Ar
         tree.setLabel(area.getName());
         tree.setValue(area.getCode());
         return tree;
+    }
+
+    @Override
+    public boolean addArea(Area area) {
+        return save(area);
+    }
+
+    @Override
+    public boolean updateArea(Area area) {
+        return updateById(area);
+    }
+
+    @Override
+    public boolean deleteArea(Long id) {
+        return removeById(id);
+    }
+
+    @Override
+    public boolean deleteAreas(List<Long> ids) {
+        return removeByIds(ids);
+    }
+
+    @Override
+    public Area getAreaById(Long id) {
+        return getById(id);
+    }
+
+    @Override
+    public List<Area> searchAreaByName(String name) {
+        return lambdaQuery().like(Area::getName, name).list();
+    }
+
+    @Override
+    public Page<Area> listAreaByPage(int pageNum, int pageSize) {
+        Page<Area> page = new Page<>(pageNum, pageSize);
+        return page(page);
     }
 }

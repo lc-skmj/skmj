@@ -13,4 +13,18 @@ public interface AreaService extends IService<Area> {
      * @return
      */
     List<AreaTree> getAreaTree();
+
+    boolean addArea(Area area);
+
+    boolean updateArea(Area area);
+
+    boolean deleteArea(Long id);
+
+    boolean deleteAreas(List<Long> ids);
+
+    Area getAreaById(Long id);
+
+    List<Area> searchAreaByName(String name);
+
+    com.baomidou.mybatisplus.extension.plugins.pagination.Page<Area> listAreaByPage(int pageNum, int pageSize);
 }
