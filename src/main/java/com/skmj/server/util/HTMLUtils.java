@@ -29,14 +29,5 @@ public class HTMLUtils {
         return "";
     }
 
-    /**
-     * 将Markdown解析成Html
-     * @param markdownContent
-     * @return
-     */
-    public static String parseMarkdown(String markdownContent) {
-        PegDownProcessor pdp = new PegDownProcessor();
-        return pdp.markdownToHtml(markdownContent);
-    }
 
 }
