@@ -35,10 +35,9 @@ public class AuthController {
         }
     }
 
-    // 验证码校验方法
     private boolean validateCaptcha(String captcha) {
         // 实现验证码校验逻辑，例如从缓存中获取验证码并与用户输入进行比对
-        return true; // 示例返回值
+        return true;
     }
 
     /**
