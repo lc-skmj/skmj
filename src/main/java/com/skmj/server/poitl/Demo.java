@@ -11,52 +11,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author lc
+ * POITL模块演示类
+ * 展示如何使用WordUtil工具类进行Word文档操作
  */
 public class Demo {
-
-    public static void main(String[] args) throws IOException {
-        try {
-            XWPFTemplate template = XWPFTemplate.compile("demo.docx").render(
-                    new HashMap<String, Object>(1){{
-                        put("title", "Hi, poi-tl Word模板引擎");
-                    }});
-            Map<String, Object> map = new HashMap<String, Object>();
-            //人员信息
-            map.put("name", "张三");
-            map.put("sex", "男");
-            map.put("age", "18");
-            map.put("address", "北京");
-            map.put("phone", "12345678901");
-            map.put("email", "12345678901@163.com");
-            map.put("date", "2020-01-01");
-            map.put("remark", "备注");
-            //头像
-            PictureRenderData pictureRenderData = Pictures.ofUrl("a/png")
-                    .size(50, 50).create();
-            map.put("avatar", pictureRenderData);
-            //部门信息
-            map.put("department", "技术部");
-            map.put("position", "Java开发");
-            map.put("work_date", "2020-01-01");
-            map.put("salary", "5000");
-            map.put("bonus", "500");
-            map.put("tax", "500");
-            map.put("total", "5500");
-            //培训信息
-            map.put("training", "培训");
-            map.put("training_name", "培训名称");
-            map.put("training_date", "2020-01-01");
-            map.put("training_content", "培训内容");
-            map.put("training_result", "培训结果");
-            map.put("training_remark", "培训备注");
-            template.render(map);
-
-            FileOutputStream fileOutputStream = new FileOutputStream("D:\\output.docx");
-            template.write(fileOutputStream);
-            PoitlIOUtils.closeQuietlyMulti(template, fileOutputStream);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) {
+        // 创建Word文档示例
+        String filePath = "example.docx";
+        String content = "这是一个POI-TL文档处理示例。\n" + 
+                       "POI-TL是一个强大的Java Word模板引擎。\n" + 
+                       "它可以用于创建和修改Word文档。";
+        WordUtil.createWordDocument(filePath, content);
+        System.out.println("文档创建完成。");
+        
+        // 读取Word文档示例
+        String readContent = WordUtil.readWordDocument(filePath);
+        System.out.println("文档内容：\n" + readContent);
+        
+        // 修改Word文档示例
+        String newFilePath = "modified_example.docx";
+        String oldText = "POI-TL";
+        String newText = "Apache POI";
+        WordUtil.replaceInWordDocument(filePath, newFilePath, oldText, newText);
+        System.out.println("文档修改完成。");
+        
+        // 验证修改结果
+        String modifiedContent = WordUtil.readWordDocument(newFilePath);
+        System.out.println("修改后的文档内容：\n" + modifiedContent);
     }
 }
