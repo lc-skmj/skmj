@@ -69,3 +69,18 @@ ai:
     temperature: 0.7
     maxRetries: 3
     timeoutMillis: 30000
+
+# 文件存储配置
+dromara:
+  x-file-storage:
+    # 默认使用的存储平台
+    default-platform: aliyun-oss-1
+    aliyun-oss:
+      - platform: aliyun-oss-1
+        enable-storage: true
+        access-key: your-access-key
+        secret-key: your-secret-key
+        end-point: your-endpoint
+        bucket-name: your-bucket-name
+        domain: https://your-domain.com/
+        base-path: upload/
