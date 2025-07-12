@@ -84,3 +84,14 @@ dromara:
         bucket-name: your-bucket-name
         domain: https://your-domain.com/
         base-path: upload/
+
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    executor:
+      appname: skmj-xxljob-executor
+      ip:
+      port: 9999
+      logpath: ./logs/xxl-job/log
+      logretentiondays: 30
