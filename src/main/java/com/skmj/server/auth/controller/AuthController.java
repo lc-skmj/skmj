@@ -3,17 +3,34 @@ package com.skmj.server.auth.controller;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import com.skmj.server.auth.service.SysUserService;
+import com.skmj.server.auth.service.UserRegistrationService;
 import com.skmj.server.auth.vo.LoginReq;
+import com.skmj.server.auth.vo.RegisterReq;
+import com.skmj.server.auth.util.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    
     @Autowired
     SysUserService sysUserService;
+    
+    @Autowired
+    private CaptchaUtil captchaUtil;
+    
+    @Autowired
+    private UserRegistrationService userRegistrationService;
+    
+    // 用于存储生成的验证码
+    private String currentCaptcha;
 
     /**
      * 登录
@@ -35,9 +52,34 @@ public class AuthController {
         }
     }
 
-    private boolean validateCaptcha(String captcha) {
-        // 实现验证码校验逻辑，例如从缓存中获取验证码并与用户输入进行比对
-        return true;
+    /**
+     * 注册
+     */
+    @RequestMapping("register")
+    public SaResult register(@RequestBody RegisterReq registerReq) {
+        userRegistrationService.register(registerReq);
+        return SaResult.ok("注册成功");
+    }
+
+    /**
+     * 生成验证码
+     */
+    @RequestMapping("generateCaptcha")
+    public SaResult generateCaptcha() throws IOException {
+        currentCaptcha = captchaUtil.generateCaptchaText();
+        BufferedImage image = captchaUtil.generateCaptchaImage(currentCaptcha);
+        
+        // 将图片转换为Base64编码
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(image, "PNG", baos);
+        String base64Image = Base64.getEncoder().encodeToString(baos.toByteArray());
+        
+        return SaResult.ok().setData("data:image/png;base64," + base64Image);
+    }
+
+    private boolean validateCaptcha(String userInputCaptcha) {
+        // 简单校验用户输入的验证码是否与生成的一致
+        return userInputCaptcha != null && userInputCaptcha.equalsIgnoreCase(currentCaptcha);
     }
 
     /**
