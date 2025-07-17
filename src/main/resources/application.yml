@@ -90,8 +90,9 @@ xxl:
     admin:
       addresses: http://127.0.0.1:8080/xxl-job-admin
     executor:
-      appname: skmj-xxljob-executor
-      ip:
+      appname: skmj-executor
+      address: 
+      ip: 
       port: 9999
-      logpath: ./logs/xxl-job/log
+      logpath: ./logs/xxl-job-logs
       logretentiondays: 30
