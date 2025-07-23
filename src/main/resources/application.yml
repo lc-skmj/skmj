@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://127.0.0.1:3306/boot?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=true"
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:123456}
+    password: ${DB_PASSWORD:please-change-this-password-in-production}
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
@@ -35,7 +35,7 @@ ffmpeg:
 minio:
   minio_url: ${MINIO_URL:http://127.0.0.1:9000}
   minio_name: ${MINIO_USERNAME:admin}
-  minio_pass: ${MINIO_PASSWORD:}
+  minio_pass: ${MINIO_PASSWORD:please-set-strong-password-in-production}
   bucketName: ${MINIO_BUCKET:file}
 
 #OpenOffice 安装目录
@@ -58,8 +58,8 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
-  # jwt秘钥
-  jwt-secret-key: asdasdasifhueuiwyurfewbfjsdafjk
+  # jwt秘钥 - 生产环境必须使用环境变量配置
+  jwt-secret-key: ${SA_TOKEN_JWT_SECRET_KEY:please-change-this-secret-key-in-production-environment}
 
 #AI配置
 ai:

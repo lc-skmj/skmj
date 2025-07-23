@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,16 +15,19 @@ import java.time.format.DateTimeFormatter;
  * @author lc
  */
 public class RequestLoggingFilter implements Filter {
+    
+    private static final Logger logger = LoggerFactory.getLogger(RequestLoggingFilter.class);
+    
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String requestTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
         
-        System.out.println("[{}] 收到请求: {} {}".formatted(
+        logger.info("[{}] 收到请求: {} {}", 
             requestTime,
             httpRequest.getMethod(),
             httpRequest.getRequestURI()
-        ));
+        );
         
         // 记录响应状态码
         HttpServletResponse httpResponse = (HttpServletResponse) response;
@@ -30,10 +35,10 @@ public class RequestLoggingFilter implements Filter {
         
         chain.doFilter(request, responseWrapper);
         
-        System.out.println("[{}] 请求结束: 响应状态码 {}".formatted(
+        logger.info("[{}] 请求结束: 响应状态码 {}", 
             requestTime,
             responseWrapper.getStatus()
-        ));
+        );
     }
 
     @Override

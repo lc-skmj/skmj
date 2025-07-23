@@ -1,5 +1,8 @@
 package com.skmj.server.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.MessageDigest;
 
 /**
@@ -7,6 +10,8 @@ import java.security.MessageDigest;
  * @author: jeecg-boot
  */
 public class Md5Util {
+    
+    private static final Logger logger = LoggerFactory.getLogger(Md5Util.class);
 
     private static final String[] HEXDIGITS = { "0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
@@ -30,6 +35,11 @@ public class Md5Util {
 	}
 
 	public static String md5Encode(String origin, String charsetname) {
+		if (origin == null) {
+			logger.warn("MD5加密输入参数origin为null");
+			return null;
+		}
+		
 		String resultString = null;
 		try {
 			resultString = new String(origin);
@@ -40,6 +50,9 @@ public class Md5Util {
 				resultString = byteArrayToHexString(md.digest(resultString.getBytes(charsetname)));
 			}
 		} catch (Exception exception) {
+			logger.error("MD5加密失败，origin: {}, charsetname: {}", origin, charsetname, exception);
+			// 加密失败时返回null，调用方需要处理
+			return null;
 		}
 		return resultString;
 	}
